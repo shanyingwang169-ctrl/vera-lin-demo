@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vera Lin · 林薇拉 — Executive Coach · Founder · Speaker</title>
+<meta name="description" content="林薇拉（Vera Lin）：上海独立职业教练、「下班以后」播客主理人、Vera Coaching 创始人，ICF 认证 PCC 教练，服务转型期华人职场人。">
+
+<!-- Instrument Serif 400 · latin subset only · swap + preload -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&display=swap"></noscript>
+
+<style>
+/* ═══ 旷野橄榄 · 全局规格 ═══ */
+:root{
+  --olive:#847D5E;        /* 橄榄底色：整站背景 */
+  --olive-deep:#6E684D;   /* 深橄榄：区块交替底、页脚 */
+  --cream:#F1ECDF;        /* 奶油白：大标题、强调词 */
+  --ink:#2B2822;          /* 深炭褐：正文 */
+  --meta:#E8E2D2;         /* 浅米：仅大字级次要文字 */
+  --ink80:rgba(43,40,34,.8);
+  --ink60:rgba(43,40,34,.6);
+  --line:rgba(241,236,223,.25);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --serif:"Fraunces", Georgia, serif;
+  --sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --song:"Songti SC","STSong","SimSun",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--olive);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:var(--cream);color:var(--ink);}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+:focus-visible{outline:2px solid var(--cream);outline-offset:3px;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
+section{position:relative;}
+
+/* 英文门面层 */
+.en-display{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:0;color:var(--cream);}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:11px;letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(241,236,223,.6);font-weight:500;
+}
+/* 中文内容层 */
+.cn-body{line-height:1.75;max-width:38em;color:var(--ink);}
+
+/* 等宽数字 */
+.mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+
+/* ═══ 滚动入场：纯淡入（无位移滑动）═══ */
+/* 入场：上移+微缩放，--i 逐个错开；滚出画面后状态复位，来回滚动都能重播 */
+.reveal{opacity:0;transform:translateY(28px) scale(.995);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+  transition-delay:0ms;
+}
+.reveal.in{opacity:1;transform:translateY(0) scale(1);
+  transition-delay:calc(var(--i,0) * 90ms);
+}
+
+/* ═══ 图片：占位层 + 唯一图片交互（hover scale+亮度，外层 overflow hidden）═══ */
+.imgbox{position:relative;overflow:hidden;background:var(--olive-deep);}
+.imgbox img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;
+  transition:opacity .4s var(--ease),transform .6s var(--ease),filter .6s var(--ease);}
+.imgbox .ph{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--olive-deep);border:1px dashed var(--line);
+  font-family:var(--serif);color:var(--line);
+  font-size:clamp(28px,4vw,48px);letter-spacing:.02em;text-align:center;
+  user-select:none;
+}
+.imgbox.img-error img{opacity:0;}
+@media (min-width:821px) and (hover:hover){
+  .imgbox.zoom:hover img{transform:scale(1.03);filter:brightness(1.02);}
+}
+
+/* ═══ 1. 首屏：左文右图（记忆点）═══ */
+#hero{min-height:100svh;display:grid;grid-template-columns:5fr 7fr;}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(48px,8vh,96px) clamp(24px,5vw,72px);
+  background:var(--olive);
+}
+.hero-eyebrow{margin-bottom:clamp(24px,4vh,40px);}
+.hero-name{font-size:clamp(64px,9vw,140px);}
+.hero-name span{display:block;}
+.hero-cn{
+  margin-top:16px;font-size:clamp(16px,2vw,22px);
+  color:var(--ink80);letter-spacing:.08em;line-height:1.75;
+}
+.hero-links{
+  margin-top:auto;padding-top:clamp(32px,6vh,64px);
+  display:flex;gap:32px;
+}
+.hero-links a{
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink);font-weight:500;
+  border-bottom:1px solid var(--line);padding-bottom:6px;
+  transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.hero-links a:hover{color:var(--cream);border-color:var(--cream);}
+.hero-right{height:100svh;}
+.hero-right .imgbox{height:100%;}
+.hero-right img{opacity:0;transform:scale(1.04);will-change:transform;
+  transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.hero-right img.in{opacity:1;transform:scale(1);}
+.hero-right img.in.par{transition:none;} /* 视差接管 transform 后关闭其过渡 */
+
+/* ═══ 区块共用：奇偶交替底 ═══ */
+.sec{padding:clamp(80px,12vh,140px) 0;}
+.sec-odd{background:var(--olive);}
+.sec-even{background:var(--olive-deep);}
+.sec-tag{
+  font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(241,236,223,.6);font-weight:500;margin-bottom:clamp(32px,5vh,56px);
+  display:flex;align-items:center;gap:16px;
+}
+.sec-tag::after{content:"";flex:1;height:1px;background:var(--line);}
+
+/* ═══ 2. 三重身份 ═══ */
+.role-row{
+  padding:clamp(28px,4vh,44px) clamp(12px,2vw,24px);
+  border-top:1px solid var(--line);
+  transition:transform .3s var(--ease),background .3s var(--ease);
+  cursor:default;
+}
+.role-row:last-child{border-bottom:1px solid var(--line);}
+.role-row:hover{transform:translateX(4px);background:rgba(241,236,223,.04);}
+.role-en{
+  font-size:clamp(28px,4vw,52px);color:var(--meta);
+  transition:color .3s var(--ease);
+}
+.role-row:hover .role-en{color:var(--cream);}
+.role-cn{font-size:13px;color:var(--ink60);letter-spacing:.1em;margin-top:4px;}
+.role-desc{font-size:15px;line-height:1.75;max-width:38em;color:var(--ink);margin-top:10px;}
+
+/* ═══ 3. The Bio + 数据条 ═══ */
+.bio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,80px);align-items:start;}
+.bio-text{font-size:16px;color:var(--ink);}
+.bio-text::first-letter{
+  font-size:2em;line-height:1;float:left;
+  padding-right:.15em;font-weight:600;color:var(--cream);
+}
+.bio-backdrop{padding:0;}
+.bio-backdrop .imgbox{aspect-ratio:3/2;}
+.stats{
+  margin-top:clamp(56px,8vh,88px);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat{padding:clamp(20px,3vh,32px) clamp(16px,2vw,28px);border-left:1px solid var(--line);}
+.stat:first-child{border-left:none;padding-left:0;}
+.stat-n{
+  font-family:var(--serif);font-size:clamp(44px,6vw,84px);
+  line-height:1;color:var(--cream);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+}
+.stat-unit{font-size:.35em;color:var(--ink60);vertical-align:super;margin-left:.1em;font-family:var(--sans);}
+.stat-label{font-size:13px;color:var(--ink80);margin-top:8px;}
+
+/* ═══ 4. 金句：深橄榄整屏 + 右侧 40% 雾山图 ═══ */
+#quote{display:grid;grid-template-columns:7fr 5fr;align-items:center;min-height:90vh;padding:0;}
+.quote-box{position:relative;padding:clamp(80px,12vh,140px) clamp(24px,5vw,64px);}
+.quote-eyebrow{font-size:12px;letter-spacing:.28em;color:rgba(241,236,223,.55);margin-bottom:clamp(24px,4vh,44px);}
+.quote-text{
+  position:relative;font-family:var(--song);
+  font-size:clamp(28px,4.5vw,56px);line-height:1.5;
+  color:var(--cream);font-weight:400;text-wrap:balance;
+}
+.quote-by{margin-top:clamp(24px,4vh,40px);font-size:13px;color:rgba(241,236,223,.65);letter-spacing:.08em;}
+.quote-img{height:100%;min-height:60vh;position:relative;overflow:hidden;background:var(--olive-deep);}
+.quote-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(.85);}
+.quote-video{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;opacity:.55;display:block;filter:saturate(.85);}
+.quote-img::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,var(--olive) 0%,rgba(132,125,94,0) 24%);} /* 左缘融进文字底色 */
+/* 金句轮播动效：虚化淡切 + 进度线指示条 + 页码 */
+#c-quoteInner{transition:opacity .32s ease,transform .32s ease,filter .32s ease;}
+.q-out{opacity:0;transform:translateY(-14px);filter:blur(5px);}
+.q-in{animation:qIn .55s var(--ease) both;}
+@keyframes qIn{from{opacity:0;transform:translateY(18px);filter:blur(5px);}to{opacity:1;transform:none;filter:blur(0);}}
+.quote-foot{display:flex;align-items:center;gap:20px;margin-top:clamp(28px,5vh,48px);}
+.quote-dots{display:flex;gap:10px;}
+.quote-dots button{width:26px;height:2px;border:0;background:rgba(241,236,223,.28);cursor:pointer;padding:0;transition:background .3s,width .45s var(--ease);}
+.quote-dots button.on{width:56px;background:rgba(241,236,223,.25);position:relative;overflow:hidden;}
+.quote-dots button.on::after{content:"";position:absolute;inset:0;background:var(--cream);transform-origin:left;animation:qProg 6s linear forwards;}
+@keyframes qProg{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.quote-idx{font-family:var(--serif);font-size:14px;color:rgba(241,236,223,.5);letter-spacing:.08em;}
+.quote-idx b{font-weight:400;color:var(--cream);}
+
+/* ═══ 5. 演讲与活动 ═══ */
+.talk-row{
+  display:grid;grid-template-columns:64px 120px 1fr;gap:clamp(16px,3vw,40px);
+  align-items:baseline;
+  padding:clamp(20px,3vh,30px) clamp(12px,2vw,24px);
+  border-top:1px solid var(--line);
+  transition:background .3s var(--ease);
+}
+.talk-row:last-child{border-bottom:1px solid var(--line);}
+.talk-row:hover{background:rgba(241,236,223,.05);}
+.talk-no{font-family:var(--serif);font-size:15px;color:rgba(241,236,223,.6);transition:color .3s var(--ease);}
+.talk-row:hover .talk-no{color:var(--cream);}
+.talk-type{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink60);}
+.talk-title{font-size:20px;color:var(--ink);font-weight:500;}
+.talk-desc{font-size:14px;color:var(--ink80);margin-top:4px;line-height:1.7;max-width:38em;}
+
+/* ═══ 6. 媒体背书 ═══ */
+#featured{padding:clamp(56px,8vh,88px) 0;}
+.featured-line{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;margin-top:20px;}
+.featured-item{font-size:15px;color:var(--ink80);white-space:nowrap;}
+
+/* ═══ 7. 成就时间线 ═══ */
+.timeline{position:relative;margin-left:8px;padding-left:clamp(28px,4vw,48px);border-left:1px solid var(--line);}
+.work-item{position:relative;padding:clamp(24px,4vh,36px) 0;}
+.work-item::before{
+  content:"";position:absolute;left:calc(-1 * clamp(28px,4vw,48px) - 3.5px);
+  top:calc(clamp(24px,4vh,36px) + 8px);
+  width:7px;height:7px;border-radius:50%;background:var(--cream);
+}
+.work-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;}
+.work-year{font-family:var(--serif);font-size:22px;color:var(--cream);font-variant-numeric:tabular-nums;}
+.work-source{font-size:12px;color:var(--ink60);letter-spacing:.15em;}
+.work-title{font-size:18px;color:var(--cream);font-weight:500;margin-top:6px;}
+.work-desc{font-size:14px;color:var(--ink);line-height:1.7;margin-top:4px;max-width:38em;}
+
+/* ═══ 8. Backstory：左文右图 ═══ */
+#backstory{padding:0;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+.backstory-left{padding:clamp(80px,12vh,140px) clamp(24px,5vw,64px);}
+.backstory-title{font-size:clamp(36px,6vw,80px);color:var(--cream);margin-bottom:clamp(28px,4vh,44px);}
+.backstory-text{font-size:16px;color:var(--ink);margin-bottom:clamp(40px,6vh,64px);}
+.meta-table{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,4vw,56px);}
+.meta-row{
+  display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--line);
+}
+.meta-k{font-size:13px;color:var(--ink60);}
+.meta-v{font-size:15px;color:var(--ink);}
+.backstory-right .imgbox{height:100%;min-height:70vh;}
+
+/* ═══ 9. FAQ ═══ */
+.faq-title{font-size:clamp(36px,6vw,72px);color:var(--cream);margin-bottom:clamp(32px,5vh,56px);}
+.faq-item{border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item summary{
+  list-style:none;cursor:pointer;
+  display:grid;grid-template-columns:64px 1fr 32px;gap:clamp(12px,2vw,24px);
+  align-items:center;
+  padding:clamp(18px,3vh,26px) clamp(8px,1.5vw,16px);
+  transition:background .3s var(--ease);
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary:hover{background:rgba(241,236,223,.05);}
+.faq-qno{font-size:13px;color:var(--ink60);font-variant-numeric:tabular-nums;letter-spacing:.05em;}
+.faq-q{font-size:16px;color:var(--cream);font-weight:500;}
+.faq-sign{
+  justify-self:end;font-size:20px;color:var(--ink60);font-weight:300;line-height:1;
+  transition:transform .4s var(--ease);display:inline-block;
+}
+.faq-item[open] .faq-sign{transform:rotate(45deg);}
+.faq-a{
+  padding:0 clamp(8px,1.5vw,16px) clamp(20px,3vh,28px) calc(64px + clamp(12px,2vw,24px) + clamp(8px,1.5vw,16px));
+  font-size:14px;color:var(--ink);line-height:1.75;max-width:38em;
+}
+
+/* ═══ 10. 联系：深绿 #33402F · 左右两栏 ═══ */
+#contact{background:#33402F;padding:clamp(96px,16vh,180px) 0;}
+.contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(40px,6vw,96px);align-items:center;}
+.contact-tag{
+  font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(241,236,223,.6);font-weight:500;margin-bottom:clamp(24px,4vh,36px);
+  display:flex;align-items:center;gap:16px;
+}
+.contact-tag::after{content:"";width:48px;height:1px;background:var(--line);}
+.contact-title{font-size:clamp(44px,7vw,96px);color:var(--cream);}
+.contact-cn{margin-top:clamp(16px,3vh,24px);font-size:16px;line-height:1.75;color:rgba(241,236,223,.78);max-width:38em;}
+.contact-rows{margin-top:clamp(32px,5vh,48px);}
+.contact-row{
+  display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:baseline;
+  padding:16px 4px;border-bottom:1px solid var(--line);
+  transition:transform .3s var(--ease);
+  cursor:default;
+}
+.contact-row:first-child{border-top:1px solid var(--line);}
+.contact-row:hover{transform:translateX(8px);}
+.contact-k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(241,236,223,.6);}
+.contact-v{font-size:15px;color:var(--cream);}
+.c-mail{color:inherit;text-decoration:none;border-bottom:1px solid rgba(241,236,223,.35);padding-bottom:2px;transition:border-color .3s var(--ease);}
+.c-mail:hover{border-bottom-color:var(--cream);}
+.contact-btn{
+  display:inline-block;margin-top:clamp(32px,5vh,48px);
+  background:var(--cream);color:var(--ink);
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  padding:18px 48px;border-radius:6px;border:1px solid var(--cream);
+  transition:background .3s var(--ease),color .3s var(--ease);
+  cursor:pointer;
+}
+.contact-btn:hover{background:transparent;color:var(--cream);}
+/* 右栏：奶油白二维码卡 */
+.qr-card{
+  justify-self:center;background:var(--cream);border-radius:10px;
+  padding:20px;text-align:center;
+  transition:transform .3s var(--ease);
+}
+.qr-card:hover{transform:translateY(-4px);}
+.qr-box{
+  width:160px;height:160px;
+  border:1px dashed rgba(43,40,34,.35);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:22px;color:rgba(43,40,34,.35);
+  user-select:none;
+}
+.qr-img{width:160px;height:160px;margin:0 auto 4px;display:block;border-radius:6px;}
+.qr-note{margin-top:12px;font-size:12px;color:rgba(43,40,34,.6);letter-spacing:.08em;}
+
+/* ═══ 纸感噪点：整站覆一层 3.5% 颗粒，消"数码感" ═══ */
+.grain{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ═══ 精细滚动条 + 选区色：细节质感 ═══ */
+::selection{background:#2B2822;color:#F1ECDF;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--olive);}
+::-webkit-scrollbar-thumb{background:rgba(43,40,34,.35);border-radius:99px;border:2px solid var(--olive);}
+::-webkit-scrollbar-thumb:hover{background:rgba(43,40,34,.55);}
+
+/* ═══ 顶部阅读进度线：1.5px 奶油细线 ═══ */
+#progress{position:fixed;top:0;left:0;height:1.5px;width:0;background:var(--cream);z-index:1000;pointer-events:none;}
+
+/* ═══ 页脚 ═══ */
+footer{background:var(--olive-deep);border-top:1px solid var(--line);padding:32px 0;}
+.footer-in{
+  display:flex;justify-content:space-between;align-items:baseline;
+  flex-wrap:wrap;gap:8px 24px;
+  font-size:12px;color:var(--ink60);letter-spacing:.04em;
+}
+
+/* ═══ 手机端 ═══ */
+@media (max-width:820px){
+  #hero{grid-template-columns:1fr;min-height:0;}
+  .hero-right{height:60svh;order:2;}
+  .hero-links{margin-top:clamp(32px,6vh,48px);}
+  .bio-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .stat{padding-left:16px;}
+  .stat:nth-child(odd){border-left:none;padding-left:0;}
+  .stat:nth-child(n+3){border-top:1px solid var(--line);}
+  #quote{grid-template-columns:1fr;min-height:0;}
+  .quote-img{min-height:40vh;order:-1;}
+  .quote-box{max-width:100%;}
+  .talk-row{grid-template-columns:48px 1fr;grid-template-areas:"no title" "no desc";}
+  .talk-no{grid-area:no;}
+  .talk-type{display:none;}
+  .talk-head{grid-area:title;}
+  .talk-title{font-size:17px;}
+  .talk-type-inline{display:inline;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink60);margin-right:10px;}
+  #backstory{grid-template-columns:1fr;}
+  .backstory-right .imgbox{min-height:50vh;}
+  .meta-table{grid-template-columns:1fr;}
+  .faq-item summary{grid-template-columns:52px 1fr 24px;}
+  .faq-a{padding-left:calc(52px + clamp(12px,2vw,24px) + clamp(8px,1.5vw,16px));}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media (min-width:821px){
+  .talk-type-inline{display:none;}
+}
+
+/* ═══ 减少动效：全部 0.01ms ═══ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;transition-delay:0ms!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ 1. 首屏：左文右图 ═══ -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="eyebrow hero-eyebrow reveal" style="--i:0" id="c-eyebrow"></p>
+    <h1 class="en-display hero-name reveal" style="--i:1" id="c-name"></h1>
+    <p class="hero-cn reveal" style="--i:2" id="c-nameCn"></p>
+    <nav class="hero-links reveal" style="--i:3">
+      <a href="#roles">Practice</a>
+      <a href="#talks">Talks</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="hero-right">
+    <div class="imgbox">
+      <div class="ph">VERA LIN</div>
+      <img id="c-portrait" width="900" height="1200" alt="Vera Lin 林薇拉 人像">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. 三重身份 ═══ -->
+<section id="roles" class="sec sec-even">
+  <div class="wrap" id="c-roles"></div>
+</section>
+
+<!-- ═══ 3. The Bio + 数据条 ═══ -->
+<section id="bio" class="sec sec-odd">
+  <div class="wrap">
+    <p class="sec-tag reveal" style="--i:0">THE BIO · 关于</p>
+    <div class="bio-grid">
+      <p class="bio-text cn-body reveal" style="--i:1" id="c-bio"></p>
+      <div class="bio-backdrop reveal" style="--i:2">
+        <div class="imgbox zoom">
+          <div class="ph">VERA LIN</div>
+          <img id="c-backdrop" width="600" height="400" alt="氛围图">
+        </div>
+      </div>
+    </div>
+    <div class="stats reveal" style="--i:1" id="c-stats"></div>
+  </div>
+</section>
+
+<!-- ═══ 4. 金句 + 雾山图 ═══ -->
+<section id="quote" class="sec-even">
+  <div class="quote-box reveal" style="--i:0">
+    <p class="quote-eyebrow">WORDS · 金句</p>
+    <div id="c-quoteInner">
+      <p class="quote-text" id="c-quote"></p>
+      <p class="quote-by" id="c-quoteBy"></p>
+    </div>
+    <div class="quote-foot">
+      <div class="quote-dots" id="c-quoteDots"></div>
+      <span class="quote-idx"><b id="c-quoteIdx">01</b>&nbsp;/&nbsp;03</span>
+    </div>
+  </div>
+  <div class="quote-img reveal" style="--i:1">
+    <img class="quote-fallback" src="assets/quote-fallback.jpg" alt="雾山自然场景">
+    <video class="quote-video" autoplay muted loop playsinline preload="metadata"
+      poster="assets/quote-fallback.jpg">
+      <source src="https://videos.pexels.com/video-files/5826025/5826025-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<!-- ═══ 5. 演讲与活动 ═══ -->
+<section id="talks" class="sec sec-odd">
+  <div class="wrap">
+    <p class="sec-tag reveal" style="--i:0">TALKS · 讲什么</p>
+    <div id="c-talks"></div>
+  </div>
+</section>
+
+<!-- ═══ 6. 媒体背书 ═══ -->
+<section id="featured" class="sec-even">
+  <div class="wrap reveal" style="--i:0">
+    <p class="eyebrow">AS FEATURED IN</p>
+    <div class="featured-line" id="c-featured"></div>
+  </div>
+</section>
+
+<!-- ═══ 7. 成就时间线 ═══ -->
+<section id="work" class="sec sec-odd">
+  <div class="wrap">
+    <p class="sec-tag reveal" style="--i:0">THE WORK · 做过的事</p>
+    <div class="timeline" id="c-works"></div>
+  </div>
+</section>
+
+<!-- ═══ 8. Backstory：左文右图 ═══ -->
+<section id="backstory" class="sec-even">
+  <div class="backstory-left">
+    <h2 class="en-display backstory-title reveal" style="--i:0" id="c-backstoryTitle"></h2>
+    <p class="backstory-text cn-body reveal" style="--i:1" id="c-backstory"></p>
+    <div class="meta-table reveal" style="--i:2" id="c-meta"></div>
+  </div>
+  <div class="backstory-right reveal" style="--i:1">
+    <div class="imgbox zoom">
+      <div class="ph">VERA LIN</div>
+      <img id="c-backstoryImg" width="800" height="1000" alt="山谷晨光">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9. FAQ ═══ -->
+<section id="faq" class="sec sec-odd">
+  <div class="wrap">
+    <p class="sec-tag reveal" style="--i:0">FAQ · 常见问题</p>
+    <h2 class="en-display faq-title reveal" style="--i:1" id="c-faqTitle"></h2>
+    <div class="reveal" style="--i:2" id="c-faq"></div>
+  </div>
+</section>
+
+<!-- ═══ 10. 联系：深绿 · 左右两栏 ═══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="contact-tag reveal" style="--i:0">GET IN TOUCH</p>
+        <h2 class="en-display contact-title reveal" style="--i:1" id="c-contactTitle"></h2>
+        <p class="contact-cn reveal" style="--i:2" id="c-contactCn"></p>
+        <div class="contact-rows reveal" style="--i:3" id="c-contactRows"></div>
+        <a class="contact-btn reveal" style="--i:4" href="#contact">Book a call</a>
+      </div>
+      <div class="reveal" style="--i:2">
+        <div class="qr-card">
+          <img class="qr-img" src="assets/qr-demo.png" width="160" height="160" alt="微信二维码（演示用）">
+          <p class="qr-note">微信扫码（演示二维码）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-in">
+    <span id="c-demoNote"></span>
+    <span>© 2026 Vera Lin · Demo Template</span>
+  </div>
+</footer>
+
+<script>
+/* ═══ content 配置区 ═══ */
+const content = {
+  name: ["Vera", "Lin"],
+  nameCn: "林薇拉 —— 独立职业教练 · 播客主理人",
+  eyebrow: "EXECUTIVE COACH · FOUNDER · SPEAKER · PODCAST HOST",
+
+  roles: [
+    { en: "The Practice", cn: "独立教练练习", desc: "2019 年创立的一对一职业教练实践，服务创业者和留学归国职场人——帮他们在岔路口看清自己要什么。" },
+    { en: "The Track Record", cn: "可验证的战绩", desc: "带过 300+ 学员与客户完成职业转型，从大厂裸辞到海外offer，每一个案例都公开可查。" },
+    { en: "The Host", cn: "播客主持人", desc: "「下班以后」播客主理人，12 期节目，和转型过来的人聊那些不会写进简历的真实过程。" }
+  ],
+
+  bio: "林薇拉是一名常驻上海的独立职业教练、演讲者与播客主持人。她是「下班以后」播客主理人，也是职业教练练习 Vera Coaching 的创始人。服务对象是处在转型期的华人职场人——从留学归国的迷茫期，到晋升管理层的身份切换。她的方法论只有一句话：先搞清楚你要什么，再把简历对齐它。",
+
+  stats: [
+    { n: "500", unit: "+", label: "小时 1v1 教练" },
+    { n: "300", unit: "+", label: "学员与转型案例" },
+    { n: "12", unit: "期", label: "播客节目" },
+    { n: "2", unit: "城", label: "上海 · 伦敦" }
+  ],
+
+  quotes: [
+    { text: "如果你不为自己的生活做决定，别人会替你决定，然后收你利息。", author: "林薇拉", date: "2024 年春" },
+    { text: "职业转型的第一步不是辞职，是把账算清楚。", author: "林薇拉", date: "2023 年冬" },
+    { text: "简历写的是过去，面试讲的是选择。", author: "林薇拉", date: "2025 年夏" }
+  ],
+
+  talks: [
+    { no: "01", type: "Keynote", title: "裸辞不是勇气，是算术", desc: "职业转型的财务与心理准备模型——什么时候该走，什么时候该留。" },
+    { no: "02", type: "Workshop", title: "简历之外的求职证据链", desc: "用作品、复盘和公开表达构建面试官无法忽略的可信度。" },
+    { no: "03", type: "Panel", title: "留学归国：学位不是入场券", desc: "和两位海归从业者聊学历溢价消失后的真实打法。" },
+    { no: "04", type: "Fireside", title: "「下班以后」第 12 期现场版", desc: "一位从护士到产品经理的完整转型复盘。" },
+    { no: "05", type: "Workshop", title: "职场边界感练习课", desc: "说不的技巧、向上沟通的模板、以及如何不带着内疚下班。" }
+  ],
+
+  featured: ["「不惑」播客 · 2024", "《城市夜航》杂志 · 2023", "她乡周刊 · 2025", "「职场进化论」栏目 · 2024", "「心岛」电台 · 2023"],
+
+  works: [
+    { year: "2024", source: "认证", title: "ICF 国际教练联合会 PCC 认证", desc: "完成 500 小时实践与督导审核，成为国内不足千人持证的专业教练之一。" },
+    { year: "2023", source: "创立", title: "Vera Coaching 独立练习", desc: "从平台离职开始独立执业，首年即满档，等候名单排到三个月后。" },
+    { year: "2023", source: "播客", title: "「下班以后」上线", desc: "12 期真实转型访谈，全网收听 10 万+，三期进入职场类榜单前 50。" },
+    { year: "2022", source: "合作", title: "某互联网大厂内训合作", desc: "为产品团队提供季度职业发展工作坊，续约三期。" }
+  ],
+
+  backstoryTitle: "From Shanghai to everywhere.",
+  backstory: "林薇拉的前十年是一份标准的大厂履历：咨询顾问、产品经理、团队负责人。三十岁那年的一本书让她意识到，她一直在回答别人的问题。辞职、认证、独立执业——现在她用同样的十年经验，帮别人完成这一步。",
+  meta: [
+    { k: "家乡", v: "浙江 · 杭州" },
+    { k: "教育", v: "伦敦政经 LSE · 复旦大学" },
+    { k: "早期职业", v: "战略咨询顾问" },
+    { k: "正在服务", v: "创业者 · 留学生 · 转型期职场人" },
+    { k: "自我标签", v: "「清醒的乐观主义者」" }
+  ],
+
+  faqTitle: "Who is Vera Lin?",
+  faq: [
+    { q: "林薇拉是谁？", a: "林薇拉是上海独立职业教练、「下班以后」播客主理人，Vera Coaching 创始人，ICF 认证 PCC 教练，服务转型期华人职场人。" },
+    { q: "她的一对一教练怎么收费？", a: "单次体验 45 分钟，正式陪跑按季度签约。具体价格与档期在微信沟通后确认。" },
+    { q: "她服务什么人群？", a: "创业者和处在职业转型期的华人职场人：留学归国、晋升管理、裸辞重启、副业转主业。" },
+    { q: "「下班以后」播客聊什么？", a: "每期一位真实转型者，聊简历上写不了的那段过程：动摇、算账、试错和决定。" },
+    { q: "她在哪些场合演讲？", a: "高校职业周、互联网公司内训、行业线下沙龙，主题围绕职业转型与职场边界。" },
+    { q: "怎么预约她的教练服务？", a: "通过页面底部微信二维码添加，备注「教练」，48 小时内回复。" }
+  ],
+
+  contactTitle: "Let's build yours.",
+  contactCn: "48 小时内回复，微信与邮箱都能找到我。",
+  contactRows: [
+    { k: "WeChat", v: "VeraCoach" },
+    { k: "Email", v: "hello@veralin.coach" },
+    { k: "Reply", v: "48 小时内" }
+  ],
+
+  portrait: "assets/vera-portrait.jpg",
+  portraitAlt: "assets/vera-portrait.jpg",
+  backdrop: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80&fit=crop",
+  quoteImg: "https://images.unsplash.com/photo-1470071459604-3b29ec3a7fe1?w=1600&q=80&fit=crop",
+  backstoryImg: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80&fit=crop",
+
+  demoNote: "演示站点 · 人名为虚构 · 图片来自 Unsplash"
+};
+
+/* ═══ 渲染 ═══ */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+$("c-eyebrow").textContent = content.eyebrow;
+$("c-name").innerHTML = content.name.map(w=>`<span>${esc(w)}</span>`).join("");
+$("c-nameCn").textContent = content.nameCn;
+
+/* 图片：主图失败 → 备用图 → 占位层 */
+function bindImg(img, src, alt){
+  img.dataset.fallback = alt || "";
+  img.onerror = function(){
+    if(this.dataset.fallback){
+      const fb = this.dataset.fallback;
+      this.dataset.fallback = "";
+      this.src = fb;
+    } else {
+      this.closest(".imgbox").classList.add("img-error");
+    }
+  };
+  img.src = src;
+}
+bindImg($("c-portrait"), content.portrait, content.portraitAlt);
+bindImg($("c-backdrop"), content.backdrop, "");
+/* 金句区已改为视频背景，无需图片绑定 */
+bindImg($("c-backstoryImg"), content.backstoryImg, "");
+
+/* 三重身份 */
+$("c-roles").innerHTML = content.roles.map((r,i)=>`
+  <div class="role-row reveal" style="--i:${i}">
+    <h3 class="en-display role-en">${esc(r.en)}</h3>
+    <p class="role-cn">${esc(r.cn)}</p>
+    <p class="role-desc">${esc(r.desc)}</p>
+  </div>`).join("");
+
+/* Bio */
+$("c-bio").textContent = content.bio;
+
+/* 数据条 */
+$("c-stats").innerHTML = content.stats.map(s=>`
+  <div class="stat">
+    <div class="stat-n"><span class="stat-num" data-n="${esc(s.n)}">0</span><span class="stat-unit">${esc(s.unit)}</span></div>
+    <div class="stat-label">${esc(s.label)}</div>
+  </div>`).join("");
+
+/* 金句 */
+/* ── 金句轮播：6s 自动切换，虚化淡入淡出，指示条可点 ── */
+const qList = content.quotes;
+let qi = 0, qTimer;
+const qText = $("c-quote"), qBy = $("c-quoteBy"),
+      qInner = $("c-quoteInner"), qDots = $("c-quoteDots");
+qList.forEach((_, i) => {
+  const b = document.createElement("button");
+  b.setAttribute("aria-label", "金句 " + (i + 1));
+  b.addEventListener("click", () => { goQuote(i); restartQuoteTimer(); });
+  qDots.appendChild(b);
+});
+function paintQuote() {
+  qText.textContent = qList[qi].text;
+  qBy.textContent = "—— " + qList[qi].author + " · " + qList[qi].date;
+  $("c-quoteIdx").textContent = "0" + (qi + 1);
+  [...qDots.children].forEach((d, di) => d.classList.toggle("on", di === qi));
+}
+function goQuote(n) {
+  if (n === qi) return;
+  qInner.classList.add("q-out");
+  setTimeout(() => {
+    qi = n; paintQuote();
+    qInner.classList.remove("q-out");
+    qInner.classList.add("q-in");
+    setTimeout(() => qInner.classList.remove("q-in"), 560);
+  }, 300);
+}
+function restartQuoteTimer() {
+  clearInterval(qTimer);
+  qTimer = setInterval(() => goQuote((qi + 1) % qList.length), 6000);
+}
+paintQuote();
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) restartQuoteTimer();
+
+/* 演讲 */
+$("c-talks").innerHTML = content.talks.map((t,i)=>`
+  <div class="talk-row reveal" style="--i:${i}">
+    <span class="talk-no mono">${esc(t.no)}</span>
+    <span class="talk-type">${esc(t.type)}</span>
+    <div class="talk-head">
+      <span class="talk-type-inline">${esc(t.type)} ·</span>
+      <span class="talk-title">${esc(t.title)}</span>
+      <p class="talk-desc">${esc(t.desc)}</p>
+    </div>
+  </div>`).join("");
+
+/* 媒体背书 */
+$("c-featured").innerHTML = content.featured.map(f=>
+  `<span class="featured-item">${esc(f)}</span>`).join("");
+
+/* 时间线 */
+$("c-works").innerHTML = content.works.map((w,i)=>`
+  <div class="work-item reveal" style="--i:${i}">
+    <div class="work-head">
+      <span class="work-year">${esc(w.year)}</span>
+      <span class="work-source">${esc(w.source)}</span>
+    </div>
+    <p class="work-title">${esc(w.title)}</p>
+    <p class="work-desc">${esc(w.desc)}</p>
+  </div>`).join("");
+
+/* Backstory + meta */
+$("c-backstoryTitle").textContent = content.backstoryTitle;
+$("c-backstory").textContent = content.backstory;
+$("c-meta").innerHTML = content.meta.map(m=>`
+  <div class="meta-row">
+    <span class="meta-k">${esc(m.k)}</span>
+    <span class="meta-v">${esc(m.v)}</span>
+  </div>`).join("");
+
+/* FAQ（details/summary 语义结构，AI 可提取） */
+$("c-faqTitle").textContent = content.faqTitle;
+$("c-faq").innerHTML = content.faq.map((f,i)=>`
+  <details class="faq-item">
+    <summary>
+      <span class="faq-qno mono">Q.0${i+1}</span>
+      <span class="faq-q">${esc(f.q)}</span>
+      <span class="faq-sign">+</span>
+    </summary>
+    <p class="faq-a">${esc(f.a)}</p>
+  </details>`).join("");
+
+/* 联系 + 页脚 */
+$("c-contactTitle").textContent = content.contactTitle;
+$("c-contactCn").textContent = content.contactCn;
+$("c-contactRows").innerHTML = content.contactRows.map(r=>`
+  <div class="contact-row">
+    <span class="contact-k">${esc(r.k)}</span>
+    ${r.k === "Email" ? `<a class="contact-v c-mail" href="mailto:${esc(r.v)}">${esc(r.v)}</a>` : `<span class="contact-v">${esc(r.v)}</span>`}
+  </div>`).join("");
+$("c-demoNote").textContent = content.demoNote;
+
+/* ═══ 交互 ═══ */
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isDesktop = window.matchMedia("(min-width: 821px)").matches;
+
+/* 滚动入场 */
+/* 双向观察：进入视口 12% 触发入场；完全滚出后复位，反向滚动重播 */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && e.intersectionRatio >= 0.12){
+      e.target.classList.add("in");
+    } else if(!e.isIntersecting){
+      e.target.classList.remove("in");
+    }
+  });
+},{threshold:[0,0.12]});
+document.querySelectorAll(".reveal").forEach(el=>{
+  if(reduced){ el.classList.add("in"); } else { io.observe(el); }
+});
+
+/* 首屏图片入场：opacity 0→1 + scale 1.04→1 */
+const heroImg = $("c-portrait");
+requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  heroImg.classList.add("in");
+  /* 入场结束后解除 transform 过渡，交给视差（rAF，仅 transform） */
+  setTimeout(()=>{
+    heroImg.classList.add("par");
+    if(!reduced && isDesktop) startParallax();
+  }, 850);
+}));
+
+/* 顶部阅读进度线 */
+const prog = document.createElement("div");
+prog.id = "progress"; document.body.appendChild(prog);
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+  prog.style.width = (p * 100).toFixed(2) + "%";
+}, {passive:true});
+
+/* 人像滚动视差：scale 1 → 1.08 */
+function startParallax(){
+  let ticking = false;
+  window.addEventListener("scroll",()=>{
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(()=>{
+      const p = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
+      heroImg.style.transform = "scale(" + (1 + p*0.08).toFixed(4) + ")";
+      ticking = false;
+    });
+  },{passive:true});
+}
+
+/* 数据条计数 0→n · 800ms（双向重播：滚出归零，滚回重数） */
+function runCounters(box){
+  box.querySelectorAll(".stat-num").forEach(el=>{
+    const n = parseInt(el.dataset.n,10);
+    if(reduced){ el.textContent = n; return; }
+    if(el._raf) cancelAnimationFrame(el._raf);
+    const t0 = performance.now();
+    (function tick(t){
+      const p = Math.min((t-t0)/800,1);
+      const ease = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(n*ease);
+      if(p<1) el._raf = requestAnimationFrame(tick);
+    })(t0);
+  });
+}
+const statIO = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      runCounters(e.target);
+    } else if(!reduced){
+      e.target.querySelectorAll(".stat-num").forEach(el=>{
+        if(el._raf) cancelAnimationFrame(el._raf);
+        el.textContent = "0";
+      });
+    }
+  });
+},{threshold:[0,0.4]});
+statIO.observe($("c-stats"));
+
+/* 减少动效偏好：金句背景视频暂停 */
+if (reduced) {
+  const qv = document.querySelector(".quote-video");
+  if (qv) qv.pause();
+}
+/* 视频加载失败（沙箱/离线/被拦）：隐藏视频，露出底下兜底图 */
+const qv = document.querySelector(".quote-video");
+if (qv) {
+  const qvs = qv.querySelector("source");
+  const qvHide = () => { qv.style.display = "none"; };
+  if (qvs) qvs.addEventListener("error", qvHide);
+  qv.addEventListener("error", qvHide);
+  if (qv.readyState === 0 && qv.networkState === 3) qvHide();
+}
+</script>
+<div class="grain" aria-hidden="true"></div>
+</body>
+</html>
